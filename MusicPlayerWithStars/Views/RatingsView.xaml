@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			Title="Ratings"
+			x:Class="MusicPlayerWithStars.RatingsView">
+	<ContentPage.Content>
+
+		<ListView x:Name="listView"
+            		ItemsSource="{Binding Ratings}">
+
+		    <ListView.ItemTemplate>
+		      <DataTemplate>
+		        <ViewCell>
+		          <ViewCell.View>
+		            <StackLayout Orientation="Horizontal">
+
+		              	<Label Text="{Binding Rating}"
+		                       HorizontalOptions="FillAndExpand" />
+
+		                <Label Text="{Binding SongData.Title}"
+		                       HorizontalOptions="FillAndExpand" />
+
+		                <Label Text="{Binding SongData.Artist}"
+		                       HorizontalOptions="FillAndExpand"/>
+
+		                <Label Text="{Binding SongData.Album}"
+		                       HorizontalOptions="FillAndExpand"/>
+
+		            </StackLayout>
+		          </ViewCell.View>
+		        </ViewCell>
+		      </DataTemplate>
+		    </ListView.ItemTemplate>
+		  </ListView>
+
+	</ContentPage.Content>
+</ContentPage>

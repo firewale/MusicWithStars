@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			xmlns:local="clr-namespace:MusicPlayerWithStars;assembly=MusicPlayerWithStars"
+			xmlns:models="clr-namespace:MusicPlayerWithStars.Domain;assembly=MusicPlayerWithStars.Domain"
+			Title="Player"
+			x:Class="MusicPlayerWithStars.PlayerView">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="SongDataStyle" TargetType="Label">
+				<Setter Property="HorizontalOptions" Value="Center"/>
+				<Setter Property="Grid.ColumnSpan" Value="2"/>
+			</Style>
+
+			<local:RatingToStarsConverter x:Key="RatingConverter"/>
+
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+		<Grid VerticalOptions="Center">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="3*"/>
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<!--- Artist-->
+
+		<Label Text="{Binding SongInfo.Artist, StringFormat='Artist: {0}'}" Grid.Row="0" Style="{StaticResource SongDataStyle}"/>
+
+		<!--- Album-->
+
+		<Label Text="{Binding SongInfo.Album, StringFormat='Album: {0}'}" Grid.Row="1" Style="{StaticResource SongDataStyle}"/>
+
+		<!--- Title-->
+
+		<Label Text="{Binding SongInfo.Title, StringFormat='Title: {0}'}" Grid.Row="2" Style="{StaticResource SongDataStyle}"/>
+
+
+		<StackLayout Grid.Row="3" 
+					 Grid.ColumnSpan="2" 
+					 Orientation="Horizontal" 
+					 VerticalOptions="Start" 
+					 HorizontalOptions="Center">
+
+			<Button Image="previousbutton_64_64.png" 
+					WidthRequest="84" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding PreviousCommand}"
+					HorizontalOptions="Center"/>
+
+			<Button Image="playbutton_64_64.png" 
+					WidthRequest="84" 
+					HeightRequest="64" 
+					IsVisible="{Binding IsNotPlaying}" 
+					Command="{Binding PlayCommand}" 
+					BackgroundColor="Transparent"
+					HorizontalOptions="Center"/>
+
+			<Button Image="pausebutton_64_64.png" 
+					WidthRequest="84" 
+					HeightRequest="64" 
+					IsVisible="{Binding IsPlaying}" 
+					Command="{Binding PauseCommand}" 
+					BackgroundColor="Transparent"
+					HorizontalOptions="Center"/>
+
+			<Button Image="nextbutton_64_64.png" 
+					WidthRequest="84" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding NextCommand}"
+					HorizontalOptions="Center"/>
+
+		</StackLayout>
+
+		<Slider Grid.Row="4" Grid.ColumnSpan="2" Maximum="100" Minimum="0" Value="{Binding Progress}" Scale="1"/>
+
+		<Label Text="0" Grid.Row="5" Grid.Column="0" HorizontalOptions="Start"/>
+		<Label Text="{Binding Duration}" Grid.Row="5" Grid.Column="1" HorizontalOptions="End"/>
+
+		<StackLayout Grid.Row="6" 
+					 Grid.ColumnSpan="2" 
+					 Orientation="Horizontal" 
+					 VerticalOptions="Start" 
+					 HorizontalOptions="Center">
+
+			<Button Image="star_gold_48.png" 
+					WidthRequest="68" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding OneStarCommand}"
+					HorizontalOptions="Center"/>
+
+			<Button Image="{Binding Rating, Converter={StaticResource RatingConverter}, ConverterParameter={x:Static models:Rating.TwoStars}}"
+					WidthRequest="68" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding TwoStarCommand}"
+					HorizontalOptions="Center"/>
+
+			<Button Image="{Binding Rating, Converter={StaticResource RatingConverter}, ConverterParameter={x:Static models:Rating.ThreeStars}}"
+					WidthRequest="68" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding ThreeStarCommand}"
+					HorizontalOptions="Center"/>
+
+			<Button Image="{Binding Rating, Converter={StaticResource RatingConverter}, ConverterParameter={x:Static models:Rating.FourStars}}"
+					WidthRequest="68" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding FourStarCommand}"
+					HorizontalOptions="Center"/>
+
+			<Button Image="{Binding Rating, Converter={StaticResource RatingConverter}, ConverterParameter={x:Static models:Rating.FiveStars}}"
+					WidthRequest="68" 
+					HeightRequest="64" 
+					BackgroundColor="Transparent"
+					Command="{Binding FiveStarCommand}"
+					HorizontalOptions="Center"/>
+
+		</StackLayout>
+
+	</Grid>
+	</ContentPage.Content>
+</ContentPage>
