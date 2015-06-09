@@ -30,6 +30,16 @@ namespace MusicPlayerWithStars.iOS
 			await hubProxy.Invoke("RateSong", rating);
 		}
 
+
+		public System.Threading.Tasks.Task GetRatings ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		public System.Threading.Tasks.Task GetRatings (DateTime startTime, DateTime endTime)
+		{
+			throw new NotImplementedException ();
+		}
 		#endregion
 	}
 }

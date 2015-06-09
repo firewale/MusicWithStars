@@ -35,6 +35,16 @@ namespace MusicPlayerWithStars.Droid
 			await _hubProxy.Invoke("RateSong", rating);
 			
 		}
+			
+		public Task GetRatings ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		public Task GetRatings (DateTime startTime, DateTime endTime)
+		{
+			throw new NotImplementedException ();
+		}
 
 		#endregion
 	}
